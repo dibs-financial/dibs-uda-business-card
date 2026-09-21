@@ -68,6 +68,47 @@ Company cash sits in Operating.
 
 Results vary.
 
+## Engine
+
+v0 is a pure rules engine in TypeScript. No runtime dependencies. No network. No database.
+
+```
+npm install
+npm test
+```
+
+Layout:
+
+```
+src/types.ts          Company, seats, payees, Operating sleeve, ledger
+src/plans.ts          Starter / Build / Firm limits
+src/decision.ts       Allow, or decline with a code and a message
+src/commands.ts       The only way state changes
+src/engine.ts         openCompany, evaluate, apply, applyAll
+src/rules/company.ts  EIN required. Business book only. Entity limit
+src/rules/seats.ts    Operator documented. Team burnable. No Household. No shared AU
+src/rules/operating.ts Owner cash in. Payee lock out. Returns post back. Wires wait
+src/rules/card.ts     Seat must be active. Card is not the deposit. Refunds to Operating
+src/rules/furnishing.ts Company file only, when live. Never personal
+src/rules/fees.ts     No fee on score movement. Interchange after sponsor bank, never on perks
+test/                 One file per rule area
+```
+
+`evaluate(state, command)` judges. `apply(state, command)` judges and, if allowed, returns the next state. Both are pure. A decline always carries a code from `src/decision.ts` so the reason is never a guess.
+
+```ts
+import { openCompany, apply } from "@dibs-financial/uda-business-rules";
+
+let state = openCompany({ id: "co_1", name: "Acme Holdings LLC", ein: "12-3456789", plan: "starter", entities: 1, furnishingLive: false, sponsorBank: false });
+
+state = apply(state, { type: "deposit", amountCents: 100_00, source: "owner_cash" }).state;
+
+const r = apply(state, { type: "add_seat", seatKind: "household", id: "h1" });
+// r.decision -> { ok: false, code: "HOUSEHOLD_NOT_ON_COMPANY", message: "No Household AU on this card. ..." }
+```
+
+Money is integer cents. Timestamps are ISO strings you pass in, or now.
+
 ## Repo
 
 Use a separate repository. Do not put this product in `dibs-uda-card`.
