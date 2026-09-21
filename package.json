@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "UDA Business v0 rules engine. Evaluates company card, seat, and Operating sleeve rules. Does not issue cards, move bank money, or report to bureaus.",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "SEE LICENSE IN LICENSE",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

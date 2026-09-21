@@ -135,4 +135,6 @@ Those wait on a sponsor bank. Consumer privacy and LifeLock stay on UDA unless t
 
 ## License
 
-UNLICENSED. Private.
+Proprietary. Copyright (c) 2026 DIBS Financial. All rights reserved.
+
+Not MIT. Not Apache. Not GPL. See [LICENSE](LICENSE).
