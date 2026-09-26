@@ -28,6 +28,12 @@ v0 is the business rules engine. It does not issue cards, move bank money, or re
 
 A founder can hold UDA and UDA Business the way they hold two banks. That does not merge the companies.
 
+## LINE
+
+The rules live in LINE: `dibs-financial/dibs-line`. Spec: `UDA_LINE.md` there.
+
+This repo holds no rules code. LINE runs this company as `kind: "business"` and refuses to bridge it to a consumer book.
+
 ## D&B
 
 D&B is a product feature on this company. It is not a score promise.
