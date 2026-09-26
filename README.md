@@ -111,7 +111,7 @@ Results vary.
 
 Use a separate repository. Do not put this product in `dibs-uda-card`.
 
-Suggested name: `dibs-financial/dibs-uda-business`
+Repo: `dibs-financial/dibs-uda-business-card`
 
 About:
 
